@@ -1,0 +1,23 @@
+create trigger formalisation_mdp
+    before insert
+    on utilisateur
+    for each row
+BEGIN
+    DECLARE v_role CHAR(1);
+    DECLARE v_nom VARCHAR(45);
+    DECLARE v_prenom VARCHAR(45);
+    DECLARE v_dateCreationCompte VARCHAR(45);
+
+    SET v_role = NEW.role;
+
+    SET v_dateCreationCompte = NEW.dateCreationCompte;
+    select substring(v_dateCreationCompte, 1, 4) into v_dateCreationCompte;
+
+    set v_prenom = NEW.prenom;
+    select substring(v_prenom, 1,2) into v_prenom;
+
+    set v_nom = NEW.nom;
+    select substring(v_nom, 1, 2) into v_nom;
+
+    set NEW.mdp = concat(v_role,v_dateCreationCompte,'_',UPPER(v_prenom),UPPER(v_nom));
+end;
