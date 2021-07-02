@@ -1,0 +1,10 @@
+INSERT INTO metier (uuid, nom) VALUES (UUID(), 'électricien');
+INSERT INTO metier (uuid, nom) VALUES (UUID(), 'menuisier');
+INSERT INTO metier (uuid, nom) VALUES (UUID(), 'maçon');
+INSERT INTO metier (uuid, nom) VALUES (UUID(), 'peintre');
+
+INSERT INTO utilisateur (nom, prenom, role, dateCreationCompte, statut, uuidMetier) values ('civel','florian','C',2020,1,(select uuid from metier where nom = 'maçon'));
+INSERT INTO utilisateur (nom, prenom, role, dateCreationCompte, statut, uuidMetier) values ('brochard','axel','I',2020,1,(select uuid from metier where nom = 'peintre'));
+INSERT INTO utilisateur (nom, prenom, role, dateCreationCompte, statut, uuidMetier) values ('boursin','baptiste','C',2020,1,(select uuid from metier where nom = 'maçon'));
+INSERT INTO utilisateur (nom, prenom, role,dateCreationCompte, statut, uuidMetier) values ('gallois','maureen','I',2020,1,(select uuid from metier where nom = 'menuisier'));
+
