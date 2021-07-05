@@ -1,0 +1,7 @@
+SET GLOBAL event_scheduler = ON;
+
+ALTER TABLE utilisateur add column ts_modification TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+CREATE EVENT expiremdp ON SCHEDULE EVERY 2 MONTH DO
+    UPDATE utilisateur SET statut = 0
+WHERE TIMESTAMPDIFF(MONTH, utilisateur.ts_modification, NOW()) = 2;
